@@ -9,7 +9,8 @@ import {
     Image,
     Dimensions,
     TouchableOpacity,
-    FlatList
+    FlatList,
+    Modal
 } from 'react-native';
 import Svg, { G, Rect, Line, Circle } from "react-native-svg";
 import MasonryList from '@react-native-seoul/masonry-list';
@@ -105,6 +106,7 @@ const HomeScreen = ({ navigation }) => {
     const handlePress = () => {
         // Add your desired functionality when the circle is pressed
         console.log('Circle pressed!');
+        setModalVisible(true);
     };
 
     const [data, setData] = useState([]);
@@ -121,18 +123,24 @@ const HomeScreen = ({ navigation }) => {
     const pressNavigate = (item) => {
         // Add your desired functionality when the circle is pressed
         // console.log(item);
-        if(item.type == "video"){
+        if (item.type == "video") {
             navigation.push('VideoScreen', item)
-        }else {
+        } else {
             navigation.push('ImageScreen', item)
         }
+    };
+
+    const [modalVisible, setModalVisible] = useState(false);
+
+    const handleCloseModal = () => {
+        setModalVisible(false);
     };
 
 
     const renderItem = ({ item }) => {
         const cardSize = calculateCardSize(item.size);
         return (
-            <TouchableOpacity onPress={() => {pressNavigate(item)}}>
+            <TouchableOpacity onPress={() => { pressNavigate(item) }}>
                 <View style={[styles.cardContainer, cardSize]}>
                     {/* <Image source={{ uri: item.image_url }} style={styles.image} /> */}
                     <Text>{item.type}</Text>
@@ -199,6 +207,59 @@ const HomeScreen = ({ navigation }) => {
                     onPress={() => navigation.navigate('Details')}
                 /> */}
 
+                <Modal
+                    visible={modalVisible}
+                    animationType="slide"
+                    // transparent={true}
+                    onRequestClose={handleCloseModal}
+                >
+                    <View style={styles.modalContainer}>
+                        <View style={styles.modalContent}>
+
+                            <View style={{ display: 'flex', flex: 0.2, alignItems: 'flex-end' }}>
+                                <TouchableOpacity onPress={handleCloseModal}>
+                                    <View style={styles.container}>
+                                        <Svg width={30} height={30} viewBox="0 0 100 100">
+                                            <Circle cx={50} cy={50} r={40} fill="black" />
+                                        </Svg>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+
+                            <View style={{ display: 'flex', flex: 0.8, marginTop: 20 }}>
+                                <TouchableOpacity onPress={handleCloseModal}>
+                                    <View style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
+                                        <TouchableOpacity onPress={handleCloseModal}>
+                                            <View style={styles.container}>
+                                                <Svg width={30} height={30} viewBox="0 0 100 100">
+                                                    <Circle cx={50} cy={50} r={40} fill="black" />
+                                                </Svg>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <Text style={{ color: 'black', marginLeft: 20, fontWeight: 'bold', fontSize: 16 }}>Create a post</Text>
+                                    </View>
+                                </TouchableOpacity>
+
+                                <TouchableOpacity onPress={handleCloseModal}>
+                                    <View style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
+                                        <TouchableOpacity onPress={handleCloseModal}>
+                                            <View style={styles.container}>
+                                                <Svg width={30} height={30} viewBox="0 0 100 100">
+                                                    <Circle cx={50} cy={50} r={40} fill="black" />
+                                                </Svg>
+                                            </View>
+                                        </TouchableOpacity>
+                                        <Text style={{ color: 'black', marginLeft: 20, fontWeight: 'bold', fontSize: 16 }}>Create a story</Text>
+                                    </View>
+                                </TouchableOpacity>
+                            </View>
+
+
+                        </View>
+                    </View>
+                </Modal>
+
+
                 <MasonryList
                     data={initialData}
                     keyExtractor={(item) => item.id.toString()}
@@ -258,6 +319,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         // backgroundColor: '#f5f5f5',
+        display: 'flex',
+        // position: 'absolute',
+        // right: 0
     },
     listContainer: {
         padding: 10,
@@ -282,7 +346,31 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 1,
         bottom: 1
-    }
+    },
+    modalContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#fff',
+        display: 'flex'
+    },
+    modalContent: {
+        backgroundColor: '#D0D0D0',
+        padding: 20,
+        borderRadius: 10,
+        height: height * 0.3,
+        width: width * 0.9,
+        display: 'flex',
+    },
+    modalText: {
+        fontSize: 20,
+        marginBottom: 10,
+    },
+    closeButton: {
+        fontSize: 16,
+        color: 'blue',
+        alignSelf: 'flex-end',
+    },
 });
 
 export default HomeScreen

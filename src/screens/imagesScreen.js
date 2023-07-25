@@ -15,7 +15,7 @@ import Card from '../components/card';
 
 const { height, width } = Dimensions.get('window')
 
-const ImageScreen = (props, { navigation }) => {
+const ImageScreen = (props) => {
 
   const initialData = [
     {
@@ -102,6 +102,9 @@ const ImageScreen = (props, { navigation }) => {
 
   const handlePress = () => {
     // Add your desired functionality when the circle is pressed
+    props.navigation.push('PostingScreen')
+    // console.log(navigation);
+    // console.log(props);
     console.log('Circle pressed!');
   };
 
