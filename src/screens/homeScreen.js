@@ -109,6 +109,13 @@ const HomeScreen = ({ navigation }) => {
         setModalVisible(true);
     };
 
+    const createAPost = () => {
+        // Add your desired functionality when the circle is pressed
+        console.log('Circle pressed!22');
+        setModalVisible(false);
+        navigation.push('DetailsScreen')
+    };
+
     const [data, setData] = useState([]);
 
     const calculateCardSize = (size) => {
@@ -227,9 +234,9 @@ const HomeScreen = ({ navigation }) => {
                             </View>
 
                             <View style={{ display: 'flex', flex: 0.8, marginTop: 20 }}>
-                                <TouchableOpacity onPress={handleCloseModal}>
+                                <TouchableOpacity onPress={createAPost}>
                                     <View style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
-                                        <TouchableOpacity onPress={handleCloseModal}>
+                                        <TouchableOpacity>
                                             <View style={styles.container}>
                                                 <Svg width={30} height={30} viewBox="0 0 100 100">
                                                     <Circle cx={50} cy={50} r={40} fill="black" />
@@ -240,9 +247,9 @@ const HomeScreen = ({ navigation }) => {
                                     </View>
                                 </TouchableOpacity>
 
-                                <TouchableOpacity onPress={handleCloseModal}>
+                                <TouchableOpacity onPress={createAPost}>
                                     <View style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
-                                        <TouchableOpacity onPress={handleCloseModal}>
+                                        <TouchableOpacity>
                                             <View style={styles.container}>
                                                 <Svg width={30} height={30} viewBox="0 0 100 100">
                                                     <Circle cx={50} cy={50} r={40} fill="black" />

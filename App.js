@@ -28,13 +28,13 @@ function App() {
             headerShown: false
           }}
         />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="DetailsScreen" component={DetailsScreen} options={{
+            headerShown: false
+          }} />
         <Stack.Screen name="ImageScreen" component={ImageScreen} options={{
-            title: 'Overview',
             headerShown: false
           }} />
           <Stack.Screen name="PostingScreen" component={PostingScreen} options={{
-            title: 'Overview',
             headerShown: false
           }} />
         <Stack.Screen name="VideoScreen" component={VideoScreen} />

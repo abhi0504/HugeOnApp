@@ -1,26 +1,25 @@
-import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 
-const DetailsScreen = ({ navigation }) => {
-    return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Text>Details Screen</Text>
-      {/* <Button
-        title="Go to Details... again"
-        onPress={() => navigation.push('Details')}
-      />
-      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
-      <Button title="Go back" onPress={() => navigation.goBack()} />
-      <Button
-        title="Go back to first screen in stack"
-        onPress={() => navigation.popToTop()}
-      /> */}
+
+const DetailsScreen = (navigation) => {
+
+  console.log(navigation);
+
+  return (
+    <View style={styles.container}>
+      <Text>Helllo</Text>
+      <TouchableOpacity onPress={() => navigation.navigation.goBack()}>
+        <View>
+          <Text>Go back</Text>
+        </View>
+      </TouchableOpacity>
     </View>
-)}
+  );
+};
 
-export default DetailsScreen
+const styles = StyleSheet.create({
+
+});
+
+export default DetailsScreen;
