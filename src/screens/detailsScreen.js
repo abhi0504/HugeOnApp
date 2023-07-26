@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
 
-const DetailsScreen = () => {
+const DetailsScreen = (props) => {
   const [imageUri, setImageUri] = useState('');
   const [capturedImage, setCapturedImage] = useState(null);
   const [selectedAspectRatio, setSelectedAspectRatio] = useState('1:1');
+
+  useEffect(() => {
+    console.log("USE EFFECT CALLED");
+    console.log(props);
+  }, [])
 
   const handleImagePicker = async (launchType) => {
     const options = {
