@@ -12,6 +12,7 @@ import HomeScreen from './src/screens/homeScreen';
 import ImageScreen from './src/screens/imagesScreen';
 import VideoScreen from './src/screens/videoScreen';
 import PostingScreen from './src/screens/postingScreen';
+import GallaryOrCamera from './src/screens/gallaryOrCamera';
 
 const Stack = createNativeStackNavigator();
 
@@ -37,7 +38,12 @@ function App() {
           <Stack.Screen name="PostingScreen" component={PostingScreen} options={{
             headerShown: false
           }} />
-        <Stack.Screen name="VideoScreen" component={VideoScreen} />
+        <Stack.Screen name="VideoScreen" component={VideoScreen} options={{
+            headerShown: false
+          }} />
+          <Stack.Screen name="GallaryOrCamera" component={GallaryOrCamera} options={{
+            headerShown: false
+          }} />
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -113,7 +113,7 @@ const HomeScreen = ({ navigation }) => {
         // Add your desired functionality when the circle is pressed
         console.log('Circle pressed!22');
         setModalVisible(false);
-        navigation.push('DetailsScreen')
+        navigation.push('GallaryOrCamera')
     };
 
     const [data, setData] = useState([]);
