@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -15,7 +15,12 @@ import Svg, { G, Rect, Line, Circle } from "react-native-svg";
 
 const { height, width } = Dimensions.get('window')
 
-const PostingScreen = ({ navigation }) => {
+const PostingScreen = (props) => {
+
+  useEffect(() => {
+    console.log("EWWWWWWWWW");
+    console.log(props.route.params);
+  },[])
 
   const [paragraph, setParagraph] = useState('');
 
@@ -26,7 +31,7 @@ const PostingScreen = ({ navigation }) => {
   return (
     <View style={{ flex: 1, display: 'flex' }}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => { navigation.goBack() }}>
+        <TouchableOpacity onPress={() => {props.navigation.goBack() }}>
           <View style={[styles.container, { marginLeft: 10 }]}>
             <Svg width={30} height={30} viewBox="0 0 100 100">
               <Circle cx={50} cy={50} r={40} fill="black" />
@@ -45,7 +50,7 @@ const PostingScreen = ({ navigation }) => {
       </View>
       <View style={styles.body}>
         <Image
-          source={require('../assets/test.jpg')}
+          source={{uri: props.route.params}}
           style={[styles.image, { height: '15%', width: '25%' }]}
         />
         <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Description</Text>
@@ -58,7 +63,7 @@ const PostingScreen = ({ navigation }) => {
         />
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginVertical:10 }}>
           <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Tag People</Text>
-          <TouchableOpacity onPress={() => { navigation.goBack() }}>
+          <TouchableOpacity onPress={() => { props.navigation.goBack() }}>
             <View style={[styles.container, { marginRight: 10 }]}>
               <Svg width={30} height={30} viewBox="0 0 100 100">
                 <Circle cx={50} cy={50} r={40} fill="black" />
@@ -69,7 +74,7 @@ const PostingScreen = ({ navigation }) => {
 
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginVertical:10 }}>
           <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Location</Text>
-          <TouchableOpacity onPress={() => { navigation.goBack() }}>
+          <TouchableOpacity onPress={() => { props.navigation.goBack() }}>
             <View style={[styles.container, { marginRight: 10 }]}>
               <Svg width={30} height={30} viewBox="0 0 100 100">
                 <Circle cx={50} cy={50} r={40} fill="black" />

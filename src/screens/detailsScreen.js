@@ -9,7 +9,12 @@ const DetailsScreen = (props) => {
 
   useEffect(() => {
     console.log("USE EFFECT CALLED");
-    console.log(props);
+    console.log(props.route.params);
+    if (props.route.params == 'library') {
+      handleImagePicker('library')
+    } else if (props.route.params == 'camera') {
+      handleImagePicker('camera')
+    }
   }, [])
 
   const handleImagePicker = async (launchType) => {
@@ -62,6 +67,35 @@ const DetailsScreen = (props) => {
 
   return (
     <View style={styles.container}>
+      {/* Top left button */}
+      <TouchableOpacity
+        style={{
+          position: 'absolute',
+          top: 10,
+          left: 10,
+          padding: 10,
+          backgroundColor: 'blue',
+          borderRadius: 5,
+        }}
+        onPress={() => {
+          // Handle the back button press here
+          props.navigation.goBack();
+        }}
+      >
+        <Text style={styles.buttonText}>Back</Text>
+      </TouchableOpacity>
+
+      {/* Top right button */}
+      <TouchableOpacity
+        style={[styles.buttonContainer, { top: 10, right: 10 }]}
+        onPress={() => {
+          // Handle the next button press here
+          props.navigation.push('PostingScreen', imageUri);
+        }}
+      >
+        <Text style={styles.buttonText}>Next</Text>
+      </TouchableOpacity>
+
       {imageUri ? (
         <Image source={{ uri: imageUri }} style={[styles.image, getImageDimensions()]} />
       ) : capturedImage ? (
@@ -69,6 +103,7 @@ const DetailsScreen = (props) => {
       ) : (
         <Text>No image selected</Text>
       )}
+
       <View style={styles.aspectRatioButtons}>
         <TouchableOpacity
           style={[
@@ -97,18 +132,18 @@ const DetailsScreen = (props) => {
         >
           <Text style={styles.buttonText}>16:9</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.applyButton} onPress={applyAspectRatio}>
+        {/* <TouchableOpacity style={styles.applyButton} onPress={applyAspectRatio}>
           <Text style={styles.buttonText}>Apply</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
-      <View style={styles.buttonContainer}>
+      {/* <View style={styles.buttonContainer}>
         <TouchableOpacity onPress={() => handleImagePicker('library')} style={styles.button}>
           <Text style={styles.buttonText}>Select Image</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => handleImagePicker('camera')} style={styles.button}>
           <Text style={styles.buttonText}>Take Photo</Text>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </View>
   );
 };
@@ -123,9 +158,15 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center',
+    position: 'absolute',
+    top: 10,
+    right: 10,
+    padding: 10,
+    backgroundColor: 'blue',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
   },
   aspectRatioButtons: {
     flexDirection: 'row',
@@ -147,9 +188,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'blue',
     padding: 10,
     borderRadius: 5,
-  },
-  buttonText: {
-    color: 'white',
   },
 });
 
