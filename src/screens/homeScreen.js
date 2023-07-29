@@ -14,94 +14,29 @@ import {
 } from 'react-native';
 import Svg, { G, Rect, Line, Circle } from "react-native-svg";
 import MasonryList from '@react-native-seoul/masonry-list';
-
+import axios from 'axios';
 
 const { height, width } = Dimensions.get('window')
 
-const initialData = [
-    {
-        "id": 1,
-        "title": "Item 1",
-        "image_url": "https://example.com/image1.jpg",
-        "size": "1:1",
-        "type": "image",
-        "description": "This is the description for Item 1"
-    },
-    {
-        "id": 2,
-        "title": "Item 2",
-        "image_url": "https://example.com/image2.jpg",
-        "size": "4:5",
-        "type": "video",
-        "description": "This is the description for Item 2"
-    },
-    {
-        "id": 3,
-        "title": "Item 3",
-        "image_url": "https://example.com/image3.jpg",
-        "size": "16:9",
-        "type": "image",
-        "description": "This is the description for Item 3"
-    },
-    {
-        "id": 4,
-        "title": "Item 4",
-        "image_url": "https://example.com/image4.jpg",
-        "size": "1:1",
-        "type": "video",
-        "description": "This is the description for Item 4"
-    },
-    {
-        "id": 5,
-        "title": "Item 5",
-        "image_url": "https://example.com/image5.jpg",
-        "size": "4:5",
-        "type": "image",
-        "description": "This is the description for Item 5"
-    },
-    {
-        "id": 6,
-        "title": "Item 6",
-        "image_url": "https://example.com/image6.jpg",
-        "size": "16:9",
-        "type": "video",
-        "description": "This is the description for Item 6"
-    },
-    {
-        "id": 7,
-        "title": "Item 7",
-        "image_url": "https://example.com/image7.jpg",
-        "size": "1:1",
-        "type": "image",
-        "description": "This is the description for Item 7"
-    },
-    {
-        "id": 8,
-        "title": "Item 8",
-        "image_url": "https://example.com/image8.jpg",
-        "size": "4:5",
-        "type": "video",
-        "description": "This is the description for Item 8"
-    },
-    {
-        "id": 9,
-        "title": "Item 9",
-        "image_url": "https://example.com/image9.jpg",
-        "size": "16:9",
-        "type": "image",
-        "description": "This is the description for Item 9"
-    },
-    {
-        "id": 10,
-        "title": "Item 10",
-        "image_url": "https://example.com/image10.jpg",
-        "size": "1:1",
-        "type": "video",
-        "description": "This is the description for Item 10"
-    }
-];
-
 const HomeScreen = ({ navigation }) => {
+
+    const [data, setData] = useState([]);
+
+
+    useEffect(() => {
+        fetchData();
+      }, []);
+    
+   const fetchData = async () => {
+    try {
+      console.log('going for items');
+      const response = await axios.get("http://192.168.1.2:8000/items");
+      setData(response.data);
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }; 
 
     const handlePress = () => {
         // Add your desired functionality when the circle is pressed
@@ -116,9 +51,8 @@ const HomeScreen = ({ navigation }) => {
         navigation.push('GallaryOrCamera')
     };
 
-    const [data, setData] = useState([]);
-
     const calculateCardSize = (size) => {
+        console.log(size);
         const aspectRatio = size.split(':').map(Number);
         const screenWidth = Dimensions.get('window').width;
         const columns = 2; // Number of columns you want in the grid
@@ -146,11 +80,11 @@ const HomeScreen = ({ navigation }) => {
 
     const renderItem = ({ item }) => {
         const cardSize = calculateCardSize(item.size);
+        console.log(item.image_url);
         return (
             <TouchableOpacity onPress={() => { pressNavigate(item) }}>
                 <View style={[styles.cardContainer, cardSize]}>
-                    {/* <Image source={{ uri: item.image_url }} style={styles.image} /> */}
-                    <Text>{item.type}</Text>
+                    <Image source={{ uri: item.image_url }} style={styles.image} />
                     <View style={styles.container2}>
                         <Svg width={30} height={30} viewBox="0 0 100 100">
                             <Circle cx={50} cy={50} r={40} fill="black" />
@@ -268,7 +202,7 @@ const HomeScreen = ({ navigation }) => {
 
 
                 <MasonryList
-                    data={initialData}
+                    data={data}
                     keyExtractor={(item) => item.id.toString()}
                     renderItem={renderItem}
                     numColumns={2} // Set the number of columns you want in the masonry layout
@@ -281,7 +215,7 @@ const HomeScreen = ({ navigation }) => {
 
         </View>
     )
-}
+} 
 
 const styles = StyleSheet.create({
     layout: {

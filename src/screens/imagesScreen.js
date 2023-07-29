@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  { useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -12,6 +12,7 @@ import {
 
 import Svg, { G, Rect, Line, Circle } from "react-native-svg";
 import Card from '../components/card';
+import axios from 'axios';
 
 const { height, width } = Dimensions.get('window')
 
@@ -100,6 +101,24 @@ const ImageScreen = (props) => {
     }
 ];
 
+const [data, setData] = useState([]);
+
+
+useEffect(() => {
+    fetchData();
+  }, []);
+
+const fetchData = async () => {
+try {
+  console.log('going for items');
+  const response = await axios.get("http://192.168.1.2:8000/items");
+  setData(response.data);
+  console.log(data);
+} catch (error) {
+  console.error('Error fetching data:', error);
+}
+}; 
+
   const handlePress = () => {
     // Add your desired functionality when the circle is pressed
     props.navigation.push('PostingScreen')
@@ -140,7 +159,7 @@ const ImageScreen = (props) => {
       </View>
       <View style={styles.body}>
       <FlatList
-        data={initialData}
+        data={data}
         keyExtractor={(item) => item.id.toString()}
         numColumns={1} // Set the number of columns you want in the masonry layout
         renderItem={({ item }) => <Card item={item} />} // Render each card using the Card component

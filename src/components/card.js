@@ -52,7 +52,7 @@ const Card = ({ item }) => {
             </View>
             <View style={styles.cbody2}>
             <Image
-              source={require('../assets/test.jpg')}
+              source={{ uri: image_url }}
               style={[styles.image, {height: '100%', width: '100%'}]}
             />
             <TouchableOpacity style={{position: 'absolute', right: 1, bottom: 1}} onPress={handlePress}>
