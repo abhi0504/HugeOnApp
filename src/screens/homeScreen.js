@@ -15,6 +15,9 @@ import {
 import Svg, { G, Rect, Line, Circle } from "react-native-svg";
 import MasonryList from '@react-native-seoul/masonry-list';
 import axios from 'axios';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
+
 
 const { height, width } = Dimensions.get('window')
 
@@ -86,9 +89,7 @@ const HomeScreen = ({ navigation }) => {
                 <View style={[styles.cardContainer, cardSize]}>
                     <Image source={{ uri: item.image_url }} style={styles.image} />
                     <View style={styles.container2}>
-                        <Svg width={30} height={30} viewBox="0 0 100 100">
-                            <Circle cx={50} cy={50} r={40} fill="black" />
-                        </Svg>
+                    <Text><MaterialIcons color='white' name='favorite-border' size={30} /></Text>
                     </View>
                 </View>
             </TouchableOpacity>
@@ -124,19 +125,11 @@ const HomeScreen = ({ navigation }) => {
                     </View>
                     <View style={styles.header2}>
                         <TouchableOpacity onPress={handlePress}>
-                            <View style={styles.container}>
-                                <Svg width={30} height={30} viewBox="0 0 100 100">
-                                    <Circle cx={50} cy={50} r={40} fill="black" />
-                                </Svg>
-                            </View>
+                        <Text><MaterialIcons color='#000000' name='add' size={30} /></Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={handlePress}>
-                            <View style={styles.container}>
-                                <Svg width={30} height={30} viewBox="0 0 100 100">
-                                    <Circle cx={50} cy={50} r={40} fill="black" />
-                                </Svg>
-                            </View>
+                        <TouchableOpacity>
+                        <Text><MaterialIcons color='#000000' name='search' size={30} /></Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -160,21 +153,17 @@ const HomeScreen = ({ navigation }) => {
                             <View style={{ display: 'flex', flex: 0.2, alignItems: 'flex-end' }}>
                                 <TouchableOpacity onPress={handleCloseModal}>
                                     <View style={styles.container}>
-                                        <Svg width={30} height={30} viewBox="0 0 100 100">
-                                            <Circle cx={50} cy={50} r={40} fill="black" />
-                                        </Svg>
+                                    <Text><MaterialIcons color='#000000' name='cancel' size={30} /></Text>
                                     </View>
                                 </TouchableOpacity>
                             </View>
 
                             <View style={{ display: 'flex', flex: 0.8, marginTop: 20 }}>
                                 <TouchableOpacity onPress={createAPost}>
-                                    <View style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
+                                    <View style={{ display: 'flex', flexDirection: 'row', height: 50 }}>
                                         <TouchableOpacity>
                                             <View style={styles.container}>
-                                                <Svg width={30} height={30} viewBox="0 0 100 100">
-                                                    <Circle cx={50} cy={50} r={40} fill="black" />
-                                                </Svg>
+                                            <Text><MaterialIcons color='#000000' name='add-box' size={30} /></Text>
                                             </View>
                                         </TouchableOpacity>
                                         <Text style={{ color: 'black', marginLeft: 20, fontWeight: 'bold', fontSize: 16 }}>Create a post</Text>
@@ -182,12 +171,10 @@ const HomeScreen = ({ navigation }) => {
                                 </TouchableOpacity>
 
                                 <TouchableOpacity onPress={createAPost}>
-                                    <View style={{ display: 'flex', flexDirection: 'row', marginBottom: 20 }}>
+                                    <View style={{ display: 'flex', flexDirection: 'row',  height: 50 }}>
                                         <TouchableOpacity>
                                             <View style={styles.container}>
-                                                <Svg width={30} height={30} viewBox="0 0 100 100">
-                                                    <Circle cx={50} cy={50} r={40} fill="black" />
-                                                </Svg>
+                                            <Text><MaterialIcons color='#000000' name='add-box' size={30} /></Text>
                                             </View>
                                         </TouchableOpacity>
                                         <Text style={{ color: 'black', marginLeft: 20, fontWeight: 'bold', fontSize: 16 }}>Create a story</Text>
@@ -203,7 +190,7 @@ const HomeScreen = ({ navigation }) => {
 
                 <MasonryList
                     data={data}
-                    keyExtractor={(item) => item.id.toString()}
+                    // keyExtractor={(item) => item.id.toString()}
                     renderItem={renderItem}
                     numColumns={2} // Set the number of columns you want in the masonry layout
                     containerWidth={width}
@@ -252,7 +239,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        marginTop: 20
     },
     logo: {
         height: height * 0.043, width: width * 0.18, marginLeft: width * 0.024

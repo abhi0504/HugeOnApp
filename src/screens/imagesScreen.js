@@ -160,7 +160,7 @@ try {
       <View style={styles.body}>
       <FlatList
         data={data}
-        keyExtractor={(item) => item.id.toString()}
+        // keyExtractor={(item) => item.id.toString()}
         numColumns={1} // Set the number of columns you want in the masonry layout
         renderItem={({ item }) => <Card item={item} />} // Render each card using the Card component
       />

@@ -80,10 +80,10 @@ const Card = ({ item }) => {
                         </Svg>
                     </View>
                 </TouchableOpacity>
-                <Text>The cition is truthy</Text>
+                <Text>{item.title}</Text>
                 </View>
                 <View style={styles.cb32}>
-                    <Text>The conditional (ternary) operator is t condition is truthy</Text>
+                    <Text>{description}</Text>
                 </View>
             </View>
 
@@ -163,7 +163,7 @@ const styles = StyleSheet.create({
     },
     cb31: {
         display: 'flex',
-        flex: 0.5,
+        flex: 0.6,
         // backgroundColor: 'purple',
         flexDirection: 'row',
         justifyContent: 'flex-start',
@@ -171,10 +171,10 @@ const styles = StyleSheet.create({
     },
     cb32: {
         display: 'flex',
-        flex: 0.5,
+        flex: 0.4,
         // backgroundColor: 'blue',
-        justifyContent: 'center',
-        alignItems: 'center'
+        // justifyContent: 'center',
+        // alignItems: 'center'
     }
 });
 

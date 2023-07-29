@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { launchCamera, launchImageLibrary } from 'react-native-image-picker';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
+
+const { height, width } = Dimensions.get('window')
+
 
 const DetailsScreen = (props) => {
   const [imageUri, setImageUri] = useState('');
@@ -74,26 +79,29 @@ const DetailsScreen = (props) => {
           top: 10,
           left: 10,
           padding: 10,
-          backgroundColor: 'blue',
-          borderRadius: 5,
         }}
         onPress={() => {
           // Handle the back button press here
           props.navigation.goBack();
         }}
       >
-        <Text style={styles.buttonText}>Back</Text>
+        <Text><MaterialIcons color='black' name='arrow-back' size={30} /></Text>
       </TouchableOpacity>
 
       {/* Top right button */}
       <TouchableOpacity
-        style={[styles.buttonContainer, { top: 10, right: 10 }]}
+        style={{position:'absolute', top: 20, right: 10 }}
         onPress={() => {
           // Handle the next button press here
-          props.navigation.push('PostingScreen', imageUri);
+          props.navigation.push('PostingScreen', { imageUri: imageUri, selectedAspectRatio: selectedAspectRatio });
         }}
       >
-        <Text style={styles.buttonText}>Next</Text>
+        <View style={{
+            width: width * 0.3, backgroundColor: '#00B2E8', marginRight: 20, borderRadius: 20, justifyContent: 'center',
+            alignItems: 'center', display: 'flex', height:40
+          }}>
+            <Text style={{ color: 'white' }}>Next</Text>
+          </View>
       </TouchableOpacity>
 
       {imageUri ? (
@@ -103,6 +111,9 @@ const DetailsScreen = (props) => {
       ) : (
         <Text>No image selected</Text>
       )}
+
+<Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Aspect Ratio</Text>
+
 
       <View style={styles.aspectRatioButtons}>
         <TouchableOpacity
@@ -130,6 +141,7 @@ const DetailsScreen = (props) => {
           ]}
           onPress={() => handleAspectRatioSelection('16:9')}
         >
+          
           <Text style={styles.buttonText}>16:9</Text>
         </TouchableOpacity>
         {/* <TouchableOpacity style={styles.applyButton} onPress={applyAspectRatio}>
@@ -176,16 +188,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   aspectRatioButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#B7dc99',
     padding: 10,
     borderRadius: 5,
     marginRight: 10,
   },
   selectedButton: {
-    backgroundColor: 'green',
+    backgroundColor: '#00B2E8',
   },
   applyButton: {
-    backgroundColor: 'blue',
+    backgroundColor: '#B7dc99',
     padding: 10,
     borderRadius: 5,
   },

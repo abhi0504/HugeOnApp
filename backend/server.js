@@ -30,6 +30,8 @@ const itemSchema = new mongoose.Schema({
   title: String,
   image_url: String,
   size: String,
+  type: String,
+  description: String
 });
 
 const Item = mongoose.model('Item', itemSchema);
@@ -47,8 +49,8 @@ app.get('/items', async (req, res) => {
 
 app.post('/items', async (req, res) => {
   console.log("Comming for items");
-  const { title, image_url, size } = req.body;
-  const newItem = new Item({ title, image_url, size });
+  const { title, image_url, size, type, description } = req.body;
+  const newItem = new Item({ title, image_url, size, type, description });
   try {
     const createdItem = await newItem.save();
     res.status(201).json(createdItem);
