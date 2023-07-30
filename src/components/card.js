@@ -60,7 +60,7 @@ const Card = ({ item }) => {
                     </View>
             </TouchableOpacity>
             
-            </View>
+            </View> 
             <View style={styles.cbody3}>
                 <View style={styles.cb31}>
                 <TouchableOpacity onPress={handlePress} >
