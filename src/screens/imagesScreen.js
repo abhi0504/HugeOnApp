@@ -13,93 +13,12 @@ import {
 import Svg, { G, Rect, Line, Circle } from "react-native-svg";
 import Card from '../components/card';
 import axios from 'axios';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 const { height, width } = Dimensions.get('window')
 
 const ImageScreen = (props) => {
 
-  const initialData = [
-    {
-        "id": 1,
-        "title": "Item 1",
-        "image_url": "https://example.com/image1.jpg",
-        "size": "1:1",
-        "type": "image",
-        "description": "This is the description for Item 1"
-    },
-    {
-        "id": 2,
-        "title": "Item 2",
-        "image_url": "https://example.com/image2.jpg",
-        "size": "4:5",
-        "type": "video",
-        "description": "This is the description for Item 2"
-    },
-    {
-        "id": 3,
-        "title": "Item 3",
-        "image_url": "https://example.com/image3.jpg",
-        "size": "16:9",
-        "type": "image",
-        "description": "This is the description for Item 3"
-    },
-    {
-        "id": 4,
-        "title": "Item 4",
-        "image_url": "https://example.com/image4.jpg",
-        "size": "1:1",
-        "type": "video",
-        "description": "This is the description for Item 4"
-    },
-    {
-        "id": 5,
-        "title": "Item 5",
-        "image_url": "https://example.com/image5.jpg",
-        "size": "4:5",
-        "type": "image",
-        "description": "This is the description for Item 5"
-    },
-    {
-        "id": 6,
-        "title": "Item 6",
-        "image_url": "https://example.com/image6.jpg",
-        "size": "16:9",
-        "type": "video",
-        "description": "This is the description for Item 6"
-    },
-    {
-        "id": 7,
-        "title": "Item 7",
-        "image_url": "https://example.com/image7.jpg",
-        "size": "1:1",
-        "type": "image",
-        "description": "This is the description for Item 7"
-    },
-    {
-        "id": 8,
-        "title": "Item 8",
-        "image_url": "https://example.com/image8.jpg",
-        "size": "4:5",
-        "type": "video",
-        "description": "This is the description for Item 8"
-    },
-    {
-        "id": 9,
-        "title": "Item 9",
-        "image_url": "https://example.com/image9.jpg",
-        "size": "16:9",
-        "type": "image",
-        "description": "This is the description for Item 9"
-    },
-    {
-        "id": 10,
-        "title": "Item 10",
-        "image_url": "https://example.com/image10.jpg",
-        "size": "1:1",
-        "type": "video",
-        "description": "This is the description for Item 10"
-    }
-];
 
 const [data, setData] = useState([]);
 
@@ -121,7 +40,7 @@ try {
 
   const handlePress = () => {
     // Add your desired functionality when the circle is pressed
-    props.navigation.push('PostingScreen')
+    // props.navigation.push('PostingScreen')
     // console.log(navigation);
     // console.log(props);
     console.log('Circle pressed!');
@@ -131,31 +50,23 @@ try {
   return (
     <View style={styles.layout}>
       <View style={styles.header}>
-        <View style={styles.headerLayout}>
-          <View style={styles.header1}>
-            <Image
-              source={require('../assets/logo.png')}
-              style={styles.logo}
-            />
-          </View>
-          <View style={styles.header2}>
-            <TouchableOpacity onPress={handlePress}>
-              <View style={styles.container}>
-                <Svg width={30} height={30} viewBox="0 0 100 100">
-                  <Circle cx={50} cy={50} r={40} fill="black" />
-                </Svg>
-              </View>
-            </TouchableOpacity>
+      <View style={styles.headerLayout}>
+                    <View style={styles.header1}>
+                        <Image
+                            source={require('../assets/logo.png')}
+                            style={styles.logo}
+                        />
+                    </View>
+                    <View style={styles.header2}>
+                        <TouchableOpacity onPress={handlePress}>
+                        <Text><MaterialIcons color='#000000' name='add' size={30} /></Text>
+                        </TouchableOpacity>
 
-            <TouchableOpacity onPress={handlePress}>
-              <View style={styles.container}>
-                <Svg width={30} height={30} viewBox="0 0 100 100">
-                  <Circle cx={50} cy={50} r={40} fill="black" />
-                </Svg>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </View>
+                        <TouchableOpacity>
+                        <Text><MaterialIcons color='#000000' name='search' size={30} /></Text>
+                        </TouchableOpacity>
+                    </View>
+                </View>
       </View>
       <View style={styles.body}>
       <FlatList
@@ -205,7 +116,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    marginTop: 20
   },
   logo: {
     height: height * 0.043, width: width * 0.18, marginLeft: width * 0.024

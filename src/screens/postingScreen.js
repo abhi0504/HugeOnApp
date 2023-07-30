@@ -98,23 +98,31 @@ const PostingScreen = (props) => {
           onChangeText={handleChangeText}
         />
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginVertical:10 }}>
-          <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Tag People</Text>
-          <TouchableOpacity onPress={() => { props.navigation.goBack() }}>
+          <View  style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text><MaterialIcons color='#00B2E8' name='location-pin' size={30} /></Text>
+          <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Location</Text>
+
+          </View>
+        
+          <TouchableOpacity >
             <View style={[styles.container, { marginRight: 10 }]}>
-              <Svg width={30} height={30} viewBox="0 0 100 100">
-                <Circle cx={50} cy={50} r={40} fill="black" />
-              </Svg>
+            <Text><MaterialIcons color='black' name='keyboard-arrow-right' size={30} /></Text>
+
             </View>
           </TouchableOpacity>
         </View>
 
         <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginVertical:10 }}>
-          <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Location</Text>
-          <TouchableOpacity onPress={() => { props.navigation.goBack() }}>
+          <View  style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5 }}>
+          <Text><MaterialIcons color='#00B2E8' name='local-offer' size={30} /></Text>
+          <Text style={{ color: '#00B2E8', marginLeft: 10, fontWeight: 'bold', fontSize: 16 }}>Tag People</Text>
+
+          </View>
+        
+          <TouchableOpacity >
             <View style={[styles.container, { marginRight: 10 }]}>
-              <Svg width={30} height={30} viewBox="0 0 100 100">
-                <Circle cx={50} cy={50} r={40} fill="black" />
-              </Svg>
+            <Text><MaterialIcons color='black' name='keyboard-arrow-right' size={30} /></Text>
+
             </View>
           </TouchableOpacity>
         </View>

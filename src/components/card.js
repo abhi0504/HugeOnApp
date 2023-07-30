@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Svg, { G, Rect, Line, Circle } from "react-native-svg";
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
+
 
 const { width } = Dimensions.get('window');
 const { height } = Dimensions.get('window');
@@ -30,9 +32,8 @@ const Card = ({ item }) => {
                 <View style={styles.cb11}>
                 <TouchableOpacity onPress={handlePress}>
                     <View style={styles.container}>
-                        <Svg width={40} height={40} viewBox="0 0 100 100">
-                            <Circle cx={50} cy={50} r={40} fill="black" />
-                        </Svg>
+                    <Text><MaterialIcons color='black' name='person' size={30} /></Text>
+
                     </View>
                 </TouchableOpacity>
                 </View>
@@ -43,9 +44,7 @@ const Card = ({ item }) => {
                 <View style={styles.cb13}>
                 <TouchableOpacity onPress={handlePress}>
                     <View style={styles.container}>
-                        <Svg width={40} height={40} viewBox="0 0 100 100">
-                            <Circle cx={50} cy={50} r={40} fill="black" />
-                        </Svg>
+                    <Text><MaterialIcons color='black' name='more-horiz' size={30} /></Text>
                     </View>
                 </TouchableOpacity>
                 </View>
@@ -57,27 +56,23 @@ const Card = ({ item }) => {
             />
             <TouchableOpacity style={{position: 'absolute', right: 1, bottom: 1}} onPress={handlePress}>
                     <View style={styles.container}>
-                        <Svg width={40} height={40} viewBox="0 0 100 100">
-                            <Circle cx={50} cy={50} r={40} fill="black" />
-                        </Svg>
+                    <Text><MaterialIcons color='white' name='favorite-border' size={30} /></Text>
                     </View>
             </TouchableOpacity>
             
             </View>
             <View style={styles.cbody3}>
                 <View style={styles.cb31}>
-                <TouchableOpacity onPress={handlePress}>
+                <TouchableOpacity onPress={handlePress} >
                     <View style={styles.container}>
-                        <Svg width={40} height={40} viewBox="0 0 100 100">
-                            <Circle cx={50} cy={50} r={40} fill="black" />
-                        </Svg>
+                    <Text><MaterialIcons color='black' name='group' size={30} /></Text>
+
                     </View>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={handlePress}>
+                <TouchableOpacity onPress={handlePress} style={{marginRight: 15}}>
                     <View style={styles.container}>
-                        <Svg width={40} height={40} viewBox="0 0 100 100">
-                            <Circle cx={50} cy={50} r={40} fill="black" />
-                        </Svg>
+                    <Text><MaterialIcons color='black' name='group' size={30} /></Text>
+
                     </View>
                 </TouchableOpacity>
                 <Text>{item.title}</Text>
